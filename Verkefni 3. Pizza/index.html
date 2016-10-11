@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<div id="pizza1"></div>
+	<div id="output"></div>
+	<script type="text/javascript">
+
+	function Pizzur(name, size, toping, price) {
+		this.name = name;
+		this.size = size;
+		this.toping = toping;
+		this.price = price;
+	}
+
+	var pizza1 = new Pizzur("Makaríta","16","(ostur, oregano)","2195 kr");
+	var pizza2 = new Pizzur("Beikon","16","(Beikonkurl, ostur)","2395 kr");
+	var pizza3 = new Pizzur("Pepperoni","16","(Pepperoni, ostur)","2295 kr");
+
+	pizzas = [];
+	pizzas[0] = pizza1;
+	pizzas[1] = pizza2;
+	pizzas[2] = pizza3;
+
+	for (var i = 0; i < pizzas.length; i++) {
+		document.getElementById("pizza1").innerHTML += "Name: " + pizzas[i].name + ", Size: " + pizzas[i].size + ", Topings: " + pizzas[i].toping + ", Price:  " + pizzas[i].price + "<br><br>";
+	}
+
+
+	var family = {
+	"parents":
+	{
+	"fathers": [{"name":"Jakob"},{"name":"Nonni", "age":25}],
+	"mothers": [{"name":"Rakel"},{"name":"Sara"}]
+	}
+	};
+	var name = (family.parents.fathers[1].name);
+	console.log(name);
+
+	
+	var dog = {
+		"name":"hundur"
+	};
+	var human = {
+		"name":"Nonni",
+		"pets": dog.name
+	};
+
+	console.log(human.pets);
+	</script>
+</body>
+</html>

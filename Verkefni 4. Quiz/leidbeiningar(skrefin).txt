@@ -1,0 +1,98 @@
+﻿Hjálpin:
+
+Dæmi um skrefin til að geta leyst Quiz verkefnið (hugmynd/nálganir)
+Byrjum á harðkóðuðum og einföldum lausnum fyrst og betrumbætum svo kóðann smátt og smátt. 
+Höfum svo föllin frekar fleiri og minni í sniðum hvert með sitt hlutverk.
+
+
+1) Uppsetning
+Setjum upp html skrá (index.html) og JS skrá sem er tóm (quiz.js)
+tengjum JS við HTML í html skrá neðst á undan </body>
+css er aukatriðið í þessum hluta í verkefninu.
+
+
+2) Spurning - að færa spurningu (streng) úr JS í HTML
+
+Markmið: að færa texta úr úr JS skrá yfir í HTML skrá.
+Geymum aðeins fylkið sem geymir objectin (spurning, svarmöguleikar og rétt svar)
+og notum fyrst bara breytu með textastreng "Who is Prime Minister of the United Kingdom?"
+og reynum að koma þvi á réttan stað í index.html (harðkóðuð lausn)
+
+	a)  var spurning = "Who is Prime Minister of the United Kingdom?";
+	
+	b)  Notum DOM query  (t.d. getElementById) til að finna vísun á <h1> í index.html og geymum í breytu, sjá fleiri dæmi í kafla 5. 
+		var elSpurning = document.getElementById("question");
+
+	c)	Notum DOM aðferð (t.d. textContent) til að færa streng yfir í index.html, 
+		elSpurning.textContent = spurning;
+
+2)  Spurning - að lesa úr object 
+
+	Prófum nú að nota question í object (í stað þess að nota bara breytu), sjá kafla 3 - objects
+	
+	// object með streng, fylki og tölugildi.
+	var spurning = {
+		question:   "Who is Prime Minister of the United Kingdom?",     
+ 		choices:   [ "David Cameron", "Gordon Brown", "Winston Churchill","Tony Blair"],
+ 		correctAnswer:   0
+	}
+
+	var spurning1 = spurning.question;  	// lesum quesion úr object yfir í breytu
+	elSpurning.textContent = spurning1; 	// færum streng yfir í html.
+
+
+2)  Spurning - að lesa úr array af objectum, sjá kafla 3, objects
+
+	var allQuestions = [{
+	question:   "Who is Prime Minister of the United Kingdom?",     
+	 choices:   [ "David Cameron", "Gordon Brown", "Winston Churchill","Tony Blair"],
+	 correctAnswer:   0
+	}];
+
+	var spurning1 = allQuestions[0].question;   // færum fyrsta objectið í fylkinu
+	elSpurning.textContent = spurning1; 		// færum streng yfir í html.
+
+
+
+3) svarmöguleikar
+
+	Næst tæklum við svarmöguleika úr allQuestions (fylkinu). svarmöguleikar eru geymdir í fylki í objectum 
+
+	a) byrjum á að lesa úr JS og birta beint í html (harðkóðuð lausn), notum svipuð skref og í 2)
+		var svarMoguleiki1 = allQuestions[0].choices[0];  // ná í fyrsta svarmöguleikann í fyrsta objectinu
+	
+	Vandinn hér getur verið að nota og velja viðeigandi html element fyrir svarmöguleika (mism. útfærslur og leiðir)
+	Heppilegast er að nota div element.
+
+		ath:  
+		* ef við notum t.d. id í label þá virkar þetta.
+		* ef við notum id með <li> þá hverfur <input> og radiobutton en svarmöguleiki birtist (þ.e. ef við notum þessi element)
+		* ef við notum id með <input> þá birtist ekki svarmöguleiki í vafra (skilar sig samt yfir í html, sjá kóða í dev. tools í vafra)
+	    
+	b) Þar sem við gerum ráð fyrir mismunandi fjölda svarmöguleika með spurningu þá þurfum með strengjavinnslu að búa til html element ásamt svarmöguleikum í JS skrá (sumar spurningar eru t.d. bara með tvo svarmöguleik satt/ósatt). 
+	Við þurfum þá að nota DOM aðferð eins og innerHtml (bls. 220, kafli 5) (sjá einnig DOM manipulation aðferðir í kafla 5) til að færa 
+	streng með html elementum yfir í index.html dýnamískt.
+
+	c) Næsta skref væri að fjölga objectum í allQuestions og losna við harðkóðaðar lausnir
+
+
+4) shuffle útfærsla	- ekki til, þaf að útfæra eða googla og nota (og skilja)
+
+
+
+// Geyma til næsta verkefni (Kafli 6 - Events.)
+5) Þegar smellt er á next - EventListener  
+
+	1)  Við smell atburð þá:
+	2) 	Uppfæra teljara
+	3) 	Finna út hvaða svarmöguleika notandi svaraði og bera saman svar notanda við correctAnswer í objecti 
+		t.d. með upplýsingum úr Event Objecti (sjá Event delegation). 
+	4)	hreinsa skjá með innerHtml
+	5)  loada inn næsta object eða birta lokaskor
+
+
+// Geyma (sleppa)
+6) Ég myndi enda á að reyna við eftirfarandi:
+ keyboard útfærsla		- kafli 6 events 
+ back takkinn 			- Sjá t.d. http://www.javascriptkit.com/javatutors/radiocheck3.shtml 
+	
